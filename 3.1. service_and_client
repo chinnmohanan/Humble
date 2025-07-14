@@ -1,4 +1,6 @@
 Creating a Simple Service and Client
+C++
+
 Create a package
 Open a new terminal and source your ROS 2 installation so that ros2 commands will work.
 Navigate into the ros2_ws directory created.
@@ -117,3 +119,85 @@ a: 2 b: 3
 
 
 Enter Ctrl+C in the server terminal to stop the node from spinning.
+
+==============================================================================================================================================================
+Python
+
+Open a new terminal and source your ROS 2 installation so that ros2 commands will work.
+
+Navigate into the ros2_ws directory.
+
+Recall that packages should be created in the src directory, not the root of the workspace. Navigate into ros2_ws/src and create a new package:
+
+    ros2 pkg create --build-type ament_python --license Apache-2.0 py_srvcli --dependencies rclpy example_interfaces
+
+Your terminal will return a message verifying the creation of your package py_srvcli and all its necessary files and folders.
+
+The --dependencies argument will automatically add the necessary dependency lines to package.xml. 
+example_interfaces is the package that includes the .srv file you will need to structure your requests and responses:
+
+
+Update package.xml
+
+Because you used the --dependencies option during package creation, you don’t have to manually add dependencies to package.xml.
+
+As always, though, make sure to add the description, maintainer email and name, and license information to package.xml.
+
+<description>Python client server tutorial</description>
+<maintainer email="you@email.com">Your Name</maintainer>
+<license>Apache License 2.0</license>
+
+Update setup.py
+Add the same information to the setup.py file for the maintainer, maintainer_email, description and license fields:
+
+maintainer='Your Name',
+maintainer_email='you@email.com',
+description='Python client server tutorial',
+license='Apache License 2.0',
+
+Inside the ros2_ws/src/py_srvcli/py_srvcli directory, 
+create a new file called service_member_function.py and paste the code from file "service_member_function.py", available in repository.
+
+========================================================================
+
+Add an entry point
+To allow the ros2 run command to run your node, you must add the entry point to setup.py (located in the ros2_ws/src/py_srvcli directory).
+
+Add the following line between the 'console_scripts': brackets:
+
+'service = py_srvcli.service_member_function:main',
+
+
+Now write client code:
+Inside the ros2_ws/src/py_srvcli/py_srvcli directory, 
+create a new file called client_member_function.py and paste the code from file "client_member_function.py", available in repository.
+
+
+Add an entry point
+Like the service node, you also have to add an entry point to be able to run the client node.
+
+The entry_points field of your setup.py file should look like this:
+
+entry_points={
+    'console_scripts': [
+        'service = py_srvcli.service_member_function:main',
+        'client = py_srvcli.client_member_function:main',
+    ],
+},
+
+
+Navigate back to the root of your workspace, ros2_ws, and build your new package:
+
+colcon build --packages-select py_srvcli
+
+Open a new terminal, navigate to ros2_ws, and source the setup files:
+Now run the service node:
+    ros2 run py_srvcli service
+
+The node will wait for the client’s request.
+
+Open another terminal and source the setup files from inside ros2_ws again. 
+Start the client node, followed by any two integers separated by a space.
+
+ros2 run py_srvcli client 2 3
+
