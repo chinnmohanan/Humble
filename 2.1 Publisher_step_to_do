@@ -1,3 +1,4 @@
+C++
 Go to ros2_ws/src/cpp_pubsub/src
 
 Create a new file named publisher_fn.cpp. 
@@ -42,3 +43,60 @@ install(TARGETS
   DESTINATION lib/${PROJECT_NAME})
 
 You could build your package now, source the local setup files, and run it.
+
+
+===============================================================================================================================================================
+Python
+
+Open a new terminal and source your ROS 2 installation so that ros2 commands will work.
+
+Navigate into the ros2_ws/src directory 
+Create package here
+
+  ros2 pkg create --build-type ament_python --license Apache-2.0 py_pubsub
+
+Navigate into ros2_ws/src/py_pubsub/py_pubsub. This directory is a Python package with the same name as the ROS 2 package it’s nested in.
+
+Create file named publisher_fn.py and paste code from "publisher_fn.py" available in repository.
+====================================================================================================================================
+ Add dependencies
+Navigate one level back to the ros2_ws/src/py_pubsub directory, where the setup.py, setup.cfg, and package.xml files have been created for you.
+
+Open package.xml with your text editor.
+
+Make sure to fill in the <description>, <maintainer> and <license> tags:
+
+<description>Examples of minimal publisher/subscriber using rclpy</description>
+<maintainer email="you@email.com">Your Name</maintainer>
+<license>Apache License 2.0</license>
+After the lines above, add the following dependencies corresponding to your node’s import statements:
+
+<exec_depend>rclpy</exec_depend>
+<exec_depend>std_msgs</exec_depend>
+This declares the package needs rclpy and std_msgs when its code is executed.
+
+Make sure to save the file.
+
+Open the setup.py file. Again, match the maintainer, maintainer_email, description and license fields to your package.xml:
+
+maintainer='YourName',
+maintainer_email='you@email.com',
+description='Examples of minimal publisher/subscriber using rclpy',
+license='Apache License 2.0',
+Add the following line within the console_scripts brackets of the entry_points field:
+
+entry_points={
+        'console_scripts': [
+                'talker = py_pubsub.publisher_fn:main',
+        ],
+},
+Don’t forget to save.
+
+Check setup.cfg
+The contents of the setup.cfg file should be correctly populated automatically, like so:
+
+[develop]
+script_dir=$base/lib/py_pubsub
+[install]
+install_scripts=$base/lib/py_pubsub
+This is simply telling setuptools to put your executables in lib, because ros2 run will look for them there.
