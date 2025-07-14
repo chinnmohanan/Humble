@@ -1,5 +1,5 @@
 In the new terminal, source your main ROS 2 environment as the “underlay”, so you can build the overlay “on top of” it:
-            source /opt/ros/foxy/setup.bash
+            source /opt/ros/humble/setup.bash
 Go into the root of your workspace:
             cd ~/ros2_ws
 In the root, source your overlay:
