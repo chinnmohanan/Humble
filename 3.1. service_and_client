@@ -30,9 +30,9 @@ As always, though, make sure to add the description, maintainer email and name, 
 Write the service node
 Inside the ros2_ws/src/cpp_srvcli/src directory, create a new file called add_two_ints_server.cpp and paste the code from file "add_two_ints_server.cpp" available in repository.
 
+=======================================================================================================
 
-
-Add executable
+Add executable
 The add_executable macro generates an executable you can run using ros2 run. Add the following code block to CMakeLists.txt to create an executable named server:
 
 add_executable(server src/add_two_ints_server.cpp)
@@ -52,7 +52,7 @@ Write the client node
 Inside the ros2_ws/src/cpp_srvcli/src directory, create a new file called add_two_ints_client.cpp and paste the code from the file "add_two_ints_client.cpp", available in the repository.
 
 
-
+=======================================================================================================================
 
 
 Add executable
