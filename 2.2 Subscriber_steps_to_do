@@ -75,4 +75,4 @@ In the root of your workspace, ros2_ws, build your new package:
 Source overlay workspace.
 
 Open another terminal, source the setup files from inside ros2_ws again, and then start the listener node. 
-The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time, 
+The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time.
