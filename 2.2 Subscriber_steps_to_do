@@ -41,19 +41,38 @@ Result
 Now run the talker node:
 ros2 run cpp_pubsub talker
 The terminal should start publishing info messages every 0.5 seconds, like so:
-[INFO] [minimal_publisher]: Publishing: "Hello World: 0"
-[INFO] [minimal_publisher]: Publishing: "Hello World: 1"
-[INFO] [minimal_publisher]: Publishing: "Hello World: 2"
-[INFO] [minimal_publisher]: Publishing: "Hello World: 3"
-[INFO] [minimal_publisher]: Publishing: "Hello World: 4"
+
 
 Open another terminal, source the setup files from inside ros2_ws again, and then start the listener node:
 ros2 run cpp_pubsub listener
 The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time, like so:
-[INFO] [minimal_subscriber]: I heard: "Hello World: 10"
-[INFO] [minimal_subscriber]: I heard: "Hello World: 11"
-[INFO] [minimal_subscriber]: I heard: "Hello World: 12"
-[INFO] [minimal_subscriber]: I heard: "Hello World: 13"
-[INFO] [minimal_subscriber]: I heard: "Hello World: 14"
+
 
 Enter Ctrl+C in each terminal to stop the nodes from spinning.
+
+==========================================================================================================================================================
+Python
+
+Return to ros2_ws/src/py_pubsub/py_pubsub to create the subscriber node "subscriber_fn.py".
+
+Copy the code to subscriber_fn.py from file "subscriber_fn.py" available in repository.
+=========================================================================================================
+
+Add an entry point
+Reopen setup.py and add the entry point for the subscriber node below the publisher’s entry point. The entry_points field should now look like this:
+
+entry_points={
+        'console_scripts': [
+                'talker = py_pubsub.publisher_fn:main',
+                'listener = py_pubsub.subscriber_fn:main',
+        ],
+},
+Make sure to save the file, and then your pub/sub system should be ready.
+
+In the root of your workspace, ros2_ws, build your new package:
+
+      colcon build --packages-select py_pubsub
+Source overlay workspace.
+
+Open another terminal, source the setup files from inside ros2_ws again, and then start the listener node. 
+The listener will start printing messages to the console, starting at whatever message count the publisher is on at that time, 
