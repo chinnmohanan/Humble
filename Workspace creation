@@ -1,0 +1,45 @@
+ROS 2 humble Workspace Setup on Ubuntu 22.04
+
+This guide walks you through creating and building a ROS 2 workspace using `colcon` in "Ubuntu 22.04" with "ROS 2 humble" installed.
+
+---
+
+Objective
+
+To create a functional ROS 2 workspace (`ros2_ws`) for developing and running ROS 2 packages.
+
+---
+
+Prerequisites
+
+- Ubuntu 22.04 LTS
+- ROS 2 humble installed (Verify using `ros2 --version`)
+- Basic terminal knowledge
+
+---
+
+Step-by-Step Instructions
+
+Step 1: Source ROS 2 humble
+
+Before running ROS 2 commands, source the ROS 2 environment:
+In the new terminal, source your main ROS 2 environment as the “underlay”, so you can build the overlay “on top of” it:
+            
+            source /opt/ros/humble/setup.bash
+
+
+
+Step 2: Create the Workspace
+
+Create the ROS 2 workspace and its src folder: (On same terminal, enter following commands)
+
+            mkdir -p ~/ros2_ws/src
+            
+
+From the root of your workspace ros2_ws, you can now build your packages using the command:
+           
+            cd ~/ros2_ws
+            colcon build
+
+In the root, source your overlay:
+            source install/local_setup.bash
