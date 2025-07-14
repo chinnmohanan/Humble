@@ -1,9 +1,8 @@
-C++
+Go to ros2_ws/src/cpp_pubsub/src
 
-Write the publisher node
 Create a new file named publisher_fn.cpp. 
 Open the file using your preferred text editor.
-Copy code in publisher_member_function.cpp (available in repository).
+Copy code in publisher_fn.cpp (available in repository).
 
 
 Add dependencies
