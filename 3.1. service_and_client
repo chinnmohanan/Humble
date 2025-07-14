@@ -201,3 +201,5 @@ Start the client node, followed by any two integers separated by a space.
 
 ros2 run py_srvcli client 2 3
 
+See the result and stop operation using Ctrl+C.
+
