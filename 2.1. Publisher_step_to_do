@@ -1,4 +1,9 @@
 C++
+Go to ros2_ws/src
+Create package
+  
+  ros2 pkg create --build-type ament_cmake --license Apache-2.0 cpp_pubsub
+
 Go to ros2_ws/src/cpp_pubsub/src
 
 Create a new file named publisher_fn.cpp. 
