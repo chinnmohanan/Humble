@@ -1,0 +1,23 @@
+*For every new terminal opened, do underlay workspace sourcing.
+**For every operation in overlay workspace, do overlay workspace sourcing.
+
+Open turtlesim simulator using command below:
+
+    ros2 run turtlesim turtlesim_node
+
+To make the turtle run using keyboard
+Open another terminal*
+    ros2 run turtlesim turtle_teleop_key
+Keep this terminal and turtlesim window side by side. Click on teleop terminal and use arrow keys to navigate turtle.
+
+Try commands
+    ros2 topic list
+    ros2 node list
+
+To make the turtle run using terminal command
+Stop teleop terminal
+Open another terminal*
+
+    ros2 topic pub /turtle1/cmd_vel geometry_msgs/msg/Twist "{linear: {x: 2.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
+
+Stop terminals by Ctrl+C
