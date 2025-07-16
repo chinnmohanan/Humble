@@ -1,0 +1,26 @@
+Intsall urdf tutorial :
+
+    sudo apt install ros-humble-urdf-tutorial
+
+Do underlay workspace source
+
+Go to /opt/ros/humble/share/urdf_tutorial/urdf
+
+Do launching 
+
+    ros2 launch urdf_tutorial displa.launch.py model:=/opt/ros/humble/share/urdf_tutorial/urdf/07-physics.urdf
+
+Play around to see the features in rviz.
+
+Use tf2 tools:
+Install tf2 tools:
+
+    sudo apt install ros-humble-tf2-tools
+In a terminal run
+
+    ros2 run tf2_tools view_frames
+
+Check the location from where the above command was run. See the pdf showing relations.
+
+
+
