@@ -1,0 +1,53 @@
+Install the turtlesim package for your ROS 2 distro:
+
+Linux
+    sudo apt update
+    sudo apt install ros-humble-turtlesim
+
+Start turtlesim and teleop in two different terminals
+
+    ros2 run turtlesim turtlesim_node
+    ros2 run turtlesim turtle_teleop_key
+
+Open a new terminal to install rqt and its plugins:
+
+    sudo apt update
+    sudo apt install '~nros-humble-rqt*'
+
+Run rqt:
+    rqt
+
+Use rqt
+When running rqt for the first time, the window will be blank. No worries; just select Plugins > Services > Service Caller from the menu bar at the top.
+
+*It may take some time for rqt to locate all the plugins. 
+If you click on Plugins but don’t see Services or any other options, you should close rqt and enter the command rqt --force-discover in your terminal.
+
+Use the refresh button to the left of the Service dropdown list to ensure all the services of your turtlesim node are available.
+Click on the Service dropdown list to see turtlesim’s services, and select the /spawn service.
+
+Give the new turtle a unique name, like turtle2, by double-clicking between the empty single quotes in the Expression column. 
+You can see that this expression corresponds to the value of name and is of type string.
+Next enter some valid coordinates at which to spawn the new turtle, like x = 1.0 and y = 1.0
+
+To spawn turtle2, you then need to call the service by clicking the Call button on the upper right side of the rqt window.
+If the service call was successful, you should see a new turtle (again with a random design) spawn at the coordinates you input for x and y.
+If you refresh the service list in rqt, you will also see that now there are services related to the new turtle, /turtle2/..., in addition to /turtle1/....
+
+Give turtle1 a unique pen using the /set_pen service:
+The values for r, g and b, which are between 0 and 255, set the color of the pen turtle1 draws with, and width sets the thickness of the line.
+To have turtle1 draw with a distinct red line, change the value of r to 255, and the value of width to 5. Don’t forget to call the service after updating the values.
+
+
+ Remapping
+A second teleop node in order to control turtle2. 
+However, if you try to run the same command as before, you will notice that this one also controls turtle1. 
+The way to change this behavior is by remapping the cmd_vel topic.
+
+In a new terminal, source ROS 2, and run:
+
+    ros2 run turtlesim turtle_teleop_key --ros-args --remap turtle1/cmd_vel:=turtle2/cmd_vel
+
+Now, you can move turtle2 when this terminal is active, and turtle1 when the other terminal running turtle_teleop_key is active.
+
+Terminate operation by Ctrl+C
