@@ -8,7 +8,7 @@ Go to /opt/ros/humble/share/urdf_tutorial/urdf
 
 Do launching 
 
-    ros2 launch urdf_tutorial displa.launch.py model:=/opt/ros/humble/share/urdf_tutorial/urdf/07-physics.urdf
+    ros2 launch urdf_tutorial display.launch.py model:=/opt/ros/humble/share/urdf_tutorial/urdf/07-physics.urdf
 
 Play around to see the features in rviz.
 
