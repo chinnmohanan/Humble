@@ -12,3 +12,7 @@ Start by getting Ignition up and running with an empty world:
 ign gazebo empty.sdf
 
 app.gazebosim.org/fuel/models.
+
+Run from where the sdf file is saved.
+
+  ign gazebo building_robot.sdf
