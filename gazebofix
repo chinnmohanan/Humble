@@ -1,0 +1,14 @@
+cd ~
+gedit .bashrc
+I
+Towards end of the file, paste among export commands
+
+export LIBGL_ALWAYS_SOFTWARE=1
+
+save and close ./bashrc
+
+Start by getting Ignition up and running with an empty world:
+
+ign gazebo empty.sdf
+
+app.gazebosim.org/fuel/models.
