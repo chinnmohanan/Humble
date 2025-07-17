@@ -1,0 +1,82 @@
+For NAV2 we need cyclonedds as ROS2 middleware. By default humble has fastdds as middleware, but it shows issues with NAV2.
+Install cyclonedds:
+
+    sudo apt install ros-humble-rmw-cyclonedds-cpp
+
+Edit .bashrc :
+    cd ~
+    gedit .bashrc
+
+Update as last line in .bashrc file in home location with below command.
+
+    export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+
+Save and close file.
+
+Now install navigation2 and nav2-bringup
+    sudo apt install ros-humble-navigation2
+    sudo apt install ros-humble-nav2-bringup
+    sudo apt install ros-humble-turtlebot3*
+    sudo apt install ros-humble-slam-toolbox
+
+In every new new terminal of this simulation, do:
+    export TURTLEBOT3_MODEL=waffle   // Select the Turtlebot model for simulation
+
+New terminal 1:           //For robot
+    ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+
+New terminal 2:          //For navigation2
+Check and ensure that /scan topic is present.
+    ros2 topic list
+    ros2 topic info /scan       //It should have a LaserScan message
+    ros2 launch nav2_bringup navigation_launch.py use_sim_time=True    // sim_time needed only if we use gazebo.
+
+New terminal 3:          //For slam toolbox
+    ros2 launch slam_toolbox online_async_launch.py use_sim_time=True    // sim_time needed only if we use gazebo.
+
+New terminal 4:          //For Rviz
+    ros2 run rviz2 rviz2 -d /opt/ros/humble/share/nav2_bringup/rviz/nav2_default_view.rviz
+
+Unselect globalplanner and controller from left pane of Rviz. TF, Map and LaserScan should be kept mandatorly.
+
+New terminal 5:        //For teleop and map
+    ros2 run turtlebot3_teleop teleop_keyboard
+
+Navigate the turtlebot through the world till every area is explored.
+Now close teleop  with Ctrl+C.
+Save map by running command at home location:
+    ros2 run nav2_map_server map_saver_cli -f my_map            // Map will be saved as file (-f) in the name (my_map). May have to run multiple times to get it worked.
+Close all terminals
+==================================================================================================================
+Before Navigation (this step may be required)
+Glitch solution (Check waffle.yaml, whether the edit is needed.)
+
+In new terminal
+Go to /opt/ros/humble/share/turtlebot3_navigation2/param 
+    cd /opt/ros/humble/share/turtlebot3_navigation2/param
+Edit waffle.yaml file in above location.
+    sudo gedit waffle.yaml
+
+Search for robot_model_type in the above file.
+ comment the line and copy paste the same line to change "differential" to "nav2_amcl::DifferentialMotionModel"
+
+(Better to restart computer after waffle.yaml file edit)
+===================================================================================================================
+
+Navigation
+
+In every new new terminal of this simulation, do:
+    export TURTLEBOT3_MODEL=waffle   // Select the Turtlebot model for simulation
+
+New terminal 1:           //For robot
+    ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
+
+New terminal 2:          //For navigation2
+
+    ros2 launch turtlebot3_navigation2 navigation2_launch.py use_sim_time=True map:=<full path to my_map.yaml>   // sim_time needed only if we use gazebo.
+
+New terminal 3:          //For slam toolbox
+    ros2 launch slam_toolbox online_async_launch.py use_sim_time=True    // sim_time needed only if we use gazebo.
+
+New terminal 4:          //For Rviz
+    ros2 run rviz2 rviz2 -d /opt/ros/humble/share/nav2_bringup/rviz/nav2_default_view.rviz
