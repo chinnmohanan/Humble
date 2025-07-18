@@ -3,7 +3,7 @@ For Gazebo installation refer: (Only for Humble)
 https://gazebosim.org/docs/fortress/install_ubuntu/
 =====================================================================================
 
-Fix
+FIX
 
 cd ~
 gedit .bashrc
@@ -13,6 +13,13 @@ Towards end of the file, paste among export commands
 export LIBGL_ALWAYS_SOFTWARE=1
 
 save and close ./bashrc
+
+FIX2
+
+sudo usermod -aG video $USER
+ign gazebo -v 4 FILENAME.sdf --render-engine ogre
+
+====================================================================================
 
 Start by getting Ignition up and running with an empty world:
 
