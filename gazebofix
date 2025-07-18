@@ -1,3 +1,7 @@
+For Gazebo installation refer: (Only for Humble)
+
+https://gazebosim.org/docs/fortress/install_ubuntu/
+
 cd ~
 gedit .bashrc
 I
