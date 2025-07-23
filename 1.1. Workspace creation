@@ -42,4 +42,4 @@ From the root of your workspace ros2_ws, you can now build your packages using t
             colcon build
 
 In the root, source your overlay:
-            source install/local_setup.bash
+            source install/setup.bash
